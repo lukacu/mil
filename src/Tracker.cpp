@@ -14,6 +14,11 @@ bool Tracker::init(Matrixu& frame, TrackerParams p, ClfStrongParams *clfparams)
     img = &frame;
     frame.initII();
 
+	p._initstate[2] = MIN(frame.cols()-1, p._initstate[0] + p._initstate[2]) - p._initstate[0];
+	p._initstate[3] = MIN(frame.rows()-1, p._initstate[1] + p._initstate[3]) - p._initstate[1];
+	p._initstate[0] = MAX(0, p._initstate[0]);
+	p._initstate[1] = MAX(0, p._initstate[1]);
+
     clfparams->_ftrParams->_width = (uint)p._initstate[2];
     clfparams->_ftrParams->_height = (uint)p._initstate[3];
 
