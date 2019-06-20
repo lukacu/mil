@@ -61,12 +61,12 @@ ClfStrongParams* parseParameters(trax::Properties& param, TrackerParams& trparam
 int main(int argc, char * argv[])
 {
 
-    trax::Image img;
+    trax::ImageList img;
     trax::Region reg;
     cv::Mat image, gray;
     cv::Rect rectangle;
 
-    trax::Server handle(trax::Configuration(TRAX_REGION_RECTANGLE, TRAX_IMAGE_PATH | TRAX_IMAGE_MEMORY | TRAX_IMAGE_BUFFER), trax_no_log);
+    trax::Server handle(trax::Configuration(TRAX_REGION_RECTANGLE, TRAX_IMAGE_PATH | TRAX_IMAGE_MEMORY | TRAX_IMAGE_BUFFER, TRAX_CHANNEL_COLOR), trax_no_log);
 
     ClfStrongParams	*clfparams;
     TrackerParams trparams;
@@ -101,7 +101,7 @@ int main(int argc, char * argv[])
 
             clfparams = parseParameters(prop, trparams);
 
-            image = trax::image_to_mat(img);
+            image = trax::image_to_mat(img.get(TRAX_CHANNEL_COLOR));
 
             if(image.channels() == 3)
                 cv::cvtColor(image, gray, CV_BGR2GRAY);
@@ -132,7 +132,7 @@ int main(int argc, char * argv[])
             if(tr == TRAX_FRAME)
             {
 
-                image = trax::image_to_mat(img);
+                image = trax::image_to_mat(img.get(TRAX_CHANNEL_COLOR));
 
                 if(image.channels() == 3)
                     cv::cvtColor(image, gray, CV_BGR2GRAY);

@@ -37,15 +37,6 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/core/core.hpp"
 
-#pragma comment(lib,"cv.lib")
-#pragma comment(lib,"cxcore.lib")
-#pragma comment(lib,"highgui.lib")
-#pragma comment(lib,"cvhaartraining.lib")
-#pragma comment(lib,"ml.lib")
-#pragma comment(lib,"cvaux.lib")
-#pragma comment(lib,"cxts.lib")
-
-
 #include "omp.h"
 
 using namespace cv;
